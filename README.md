@@ -32,7 +32,7 @@ pip install -r requirements.txt
 ```
 
 ```bash
-cd blog 
+cd blog_project
 ```
 
 ```bash
