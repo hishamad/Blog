@@ -1,2 +1,2 @@
-# blog
-A website built with Django.
+# A website built with Django.
+
