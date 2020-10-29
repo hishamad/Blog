@@ -1,0 +1,36 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block css %}
+	<link rel="stylesheet" href="{% static 'blog/css/tutorials.css' %}">
+{% endblock css%}
+{% block content %}		
+<!-- <section id="tutorials">
+	<div class="grid">
+		{% for tutorial in tutorials %}
+			<div class="card">
+				<h1>{{ tutorial.title }}</h1>
+				<p>{{ tutorial.description }}</p>
+				<a href="{% url 'tutorial-detail' tutorial.id %}" class="btn">Read More</a>
+			</div>
+		{% endfor %}
+	</div>
+</section>		 -->
+	<div class="content">
+		<div class="posts-section">
+			<h1>Latest Posts</h1>
+			<div class="posts">
+				{% for post in posts %}
+				<div class="post">
+					<img src="{{post.image.url}}" alt="">
+					<div class="post-content">
+						<h2><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+						<h5>Category: {{post.category}}</h5>
+						<p class="post-content-p">{{post.content|slice:":250"}} ...</p>
+					</div>
+				</div>
+				{% endfor%}
+			</div>
+		</div>
+		{% block sidebar %} {% include 'blog/sidebar.html' %} {% endblock sidebar %}
+	</div>	
+{% endblock content %}

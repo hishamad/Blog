@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" 
+	rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Zhi+Mang+Xing&display=swap" rel="stylesheet"> 
+	{% block css %}{% endblock %}
+	<link rel="stylesheet" href="{% static 'blog/css/main.css' %}">
+	<title>Welcome to my blog! - Hisham Ahmed</title>
+</head>
+<body>
+	<div class="background">
+		<div class="container">
+			<div class="nav">
+				<div class="logo">
+					<a href="/" class="logo-name">Hisham <br />Ahmed</a>
+				</div>
+				<div class="menu-btn">
+					<div class="btn-line"></div>
+					<div class="btn-line"></div>
+					<div class="btn-line"></div>
+				</div>
+				<ul class="navbar">
+					<li class="nav-item"><a href="/" class="nav-link {% if request.path == '/' %} border-bottom {% endif %}">Home</a></li>
+					<li class="nav-item">
+						<div class="dropdown">
+							<a class="nav-link">Categories  <i class="fa fa-caret-down"></i><i class="fa fa-caret-up"></i></a>
+							<div class="dropdown-menu">
+								{% for category in categories %}
+								  <a href="/cat/{{ category.pk }}">{{ category.name }}</a>
+								{% endfor %}
+							</div>
+						</div> 
+					</li>
+					<li class="nav-item"><a href="/tutorials" class="nav-link {% if request.path == '/tutorials/' %} border-bottom{% endif %}">Tutorials</a></li>	
+				</ul>					
+			</div>
+		</div>
+	</div>
+	{% block content %}{% endblock %}
+
+	{% if is_paginated %}
+	<div class="pagination">
+		{% if page_obj.has_previous %}
+			<a href="?page=1">&laquo;</a>
+			<a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+		{% endif %}
+		<a href="?page={{page_obj.number}}" class="active">{{page_obj.number}}</a>
+		{% for num in page_obj.pangiantor.page_range %}
+			{% if page_obj.numer == num %}
+				<a href="?page= {{ num }}">{{ num }}</a>
+				{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'-3' %}
+			{% endif %}
+		{% endfor %}
+		{% if page_obj.has_next %}
+			<a href="?page={{page_obj.next_page_number}}">{{page_obj.next_page_number}}</a>
+			<a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+		{% endif %}
+		
+	</div> 
+	{% endif %}
+
+	<div class="footer">
+	    <footer>Copyright &copy; </footer>
+	</div>
+
+	<script src="https://kit.fontawesome.com/bcb4fd03b3.js" crossorigin="anonymous"></script>
+	<script src="{% static 'blog/js/script.js' %}"></script>
+</body>
+</html>
+
+

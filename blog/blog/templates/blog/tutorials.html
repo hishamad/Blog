@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block css %}
+	<link rel="stylesheet" href="{% static 'blog/css/tutorials.css' %}">
+{% endblock css%}
+
+{% block content %}
+	<section id="tutorials">
+			<div class="grid">
+				{% for tutorial in object_list %}
+					<div class="card">
+						<h1>{{ tutorial.title }}</h1>
+						<i class="fab fa-python fa-3x"></i>
+						<p>{{ tutorial.description }}</p>
+						<a href="{% url 'tutorial-detail' tutorial.id %}" class="btn">Read More</a>
+					</div>
+				{% endfor %}
+			</div>
+	</section>
+{% endblock content %}

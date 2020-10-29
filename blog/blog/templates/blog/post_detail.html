@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block css %}
+	<link rel="stylesheet" href="{% static 'blog/css/post.css' %}">
+{% endblock css%}
+
+{% block content %}
+	<div class="content">
+			<div class="posts-section">
+				<h1 class="title">{{object.title}}</h1>
+				<p class="author">By <a href="" class="author">{{ object.author }}</a> {{ object.date_posted|date:"F d, Y"}}</p>
+				<img src="{{object.image.url}}" alt="">
+				<p class="post-content">{{ object.content|safe }}</p>
+			</div>
+		{% block sidebar %} {% include 'blog/sidebar.html' %} {% endblock sidebar %}
+	</div>
+{% endblock content %}
+
+
+

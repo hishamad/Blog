@@ -1,0 +1,54 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block css %}
+	<link rel="stylesheet" href="{% static 'blog/css/tutorials.css' %}">
+{% endblock css%}
+
+{% block content %}				
+	<div class="content">
+		<div class="posts-section">
+			<h1>Category: {{ object.name }}</h1>
+			<div class="posts">
+				{% for post in posts %}
+				<div class="post">
+					<img src="{{post.image.url}}" alt="">
+					<div class="post-content">
+						<h2><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+						<h5>Category: {{post.category}}</h5>
+						<p>{{post.content|slice:":100"}} ...</p>
+					</div>
+				</div>
+				{% endfor%}
+			</div>
+		</div>
+		{% block sidebar %} {% include 'blog/sidebar.html' %} {% endblock sidebar %}
+	</div>	
+
+	<div class="pagination">
+		{% if posts.has_previous %}
+			<a href="?page=1">&laquo;</a>
+			<a href="?page={{ posts.previous_page_number }}">{{ posts.previous_page_number }}</a>
+		{% endif %}
+		{% if posts.has_next and posts.has_previous %}
+			<a href="?page={{posts.number}}" class="active">{{posts.number}}</a>
+		{% endif %}
+		{% if not posts.has_previous %}
+			<a href="?page={{posts.number}}" class="active">{{posts.number}}</a>
+		{% else %}
+			<a href="?page={{posts.number}}" class="active">{{posts.number}}</a>
+		{% endif %}
+
+		{% for num in posts.pangiantor.page_range %}
+			{% if posts.numer == num %}
+				<a href="?page= {{ num }}">{{ num }}</a>
+				{% elif num > posts.number|add:'-3' and num < posts.number|add:'-3' %}
+			{% endif %}
+		{% endfor %}
+		{% if posts.has_next %}
+			<a href="?page={{posts.next_page_number}}">{{posts.next_page_number}}</a>
+			<a href="?page={{ posts.paginator.num_pages }}">&raquo;</a>
+		{% endif %}
+		
+	</div> 
+
+{% endblock content %}

@@ -1,0 +1,30 @@
+@import "colors";
+
+.content {
+	position: absolute;
+	top: 6rem;
+	margin-bottom: 10rem;
+	
+	.posts-section{
+		.author {
+			margin-bottom: 1rem;
+			a {
+				border: 1px solid $secondary-color;
+				border-radius: 1rem;
+				padding: .2rem .4rem;
+				text-decoration: none;
+				color: $black-color;	
+			}
+		}
+		img {
+			width: 100%;
+			height: 15%;
+		}
+		.post-content {
+			font-size: 1.2rem;
+			margin-bottom: 5rem;
+			padding-bottom: 5rem;
+			border-bottom: .1rem solid $secondary-color;
+		}
+	}
+}

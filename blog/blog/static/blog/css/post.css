@@ -1,0 +1,30 @@
+.content {
+  position: absolute;
+  top: 6rem;
+  margin-bottom: 10rem;
+}
+
+.content .posts-section .author {
+  margin-bottom: 1rem;
+}
+
+.content .posts-section .author a {
+  border: 1px solid #c74438;
+  border-radius: 1rem;
+  padding: .2rem .4rem;
+  text-decoration: none;
+  color: #000000;
+}
+
+.content .posts-section img {
+  width: 100%;
+  height: 15%;
+}
+
+.content .posts-section .post-content {
+  font-size: 1.2rem;
+  margin-bottom: 5rem;
+  padding-bottom: 5rem;
+  border-bottom: 0.1rem solid #c74438;
+}
+/*# sourceMappingURL=post.css.map */
